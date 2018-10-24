@@ -20,17 +20,6 @@ function draw() {
 		objs[i].display();
 		objs[i].grav();
 	}
-	// for(var f = 0; f < objs.length; f++){
-	// 	for(var n = 1; n < objs.length; n++){
-	// 		var d = dist(objs[n].x,objs[n].y, objs[f].x, objs[f].y);
-	// 		if (d < objs[n].r+objs[f].r){
-	// 			objs[n].speed = 0;
-	// 			objs[f].speed = 0;
-	// 		}
-	//
-	// 	}
-	// }
-
 }
 
 function ball(){
@@ -44,15 +33,12 @@ function ball(){
 		ellipse(this.x, this.y, this.r*2, this.r*2);
 	}
 	this.grav = function(){
-		for(var n = 0; n <= this.a; n++){
-			if (this.y <= this.ballStop){
-				this.speed.y += n;
-				this.x += this.speed.x;
-				this.y += this.speed.y;
-				console.log(this.y)
-			}else{
-				n = this.a
-			}
-		}
+		if(this.y + this.speed.y < this.ballStop){
+			this.y += this.speed.y
+			this.speed.y += a;
+		}else if (this.y + this.speed.y >= this.ballStop){
+			this.speed.y = 0
+			this.y = this.ballStop
+		} 
 	}
 }
